@@ -1,0 +1,8 @@
+-Create a repo
+-Initialize the repo
+-know diffrence between package and package- lock .json
+-Install express
+-Create a server
+-listen to port 7777
+-make req handelers
+-install nodemon
