@@ -1,10 +1,23 @@
  const express=require('express');
  const app=express();
  app.use("/test",(req,res)=>{
-   var a=2*3;
+
    
     res.send("Hello from server!");
  })
+ app.use("/user",(req,res)=>{
+
+   
+   res.send("Hahahahhahah!");
+})
+app.get("/user",(req,res)=>{
+res.send({firstname:"shivansh",lastname:"chaturvedi"});
+})
+
+app.post("/user",(req,res)=>{
+   res.send("Save data to the database");
+   })
+
  app.listen(3000,()=>{
     console.log("Server is created and listening on 3000")
  });
