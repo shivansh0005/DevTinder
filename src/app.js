@@ -1,11 +1,14 @@
  const express=require('express');
  const app=express();
  app.use("/test",(req,res)=>{
+   var a=2*3;
+   
     res.send("Hello from server!");
  })
  app.listen(3000,()=>{
     console.log("Server is created and listening on 3000")
  });
+ 
 // Behind the scene
 
 // When you run this code (e.g., with node server.js), the server starts and listens on port 3000.
