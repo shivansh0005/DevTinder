@@ -7,6 +7,7 @@
 
 app.use("/admin",adminAuth);
 app.use("/user",userAuth)
+
 app.get("/admin/getAllData",(req,res)=>{
  res.send("all data sent")
 })
@@ -16,10 +17,16 @@ app.get("/admin/deleteUser",(req,res)=>{
   })
 
   app.get("/user",(req,res)=>{
+   //Generating Random Error
+   throw new Error("haanji bhai");
    res.send("User Login");
   })
-
-
+//Error handeling
+app.use("/",(err,req,res,next)=>{
+ if(err){
+   res.status(500).send("Something went wrong")
+ }
+})
  app.listen(3000,()=>{
     console.log("Server is created and listening on 3000")
  });
