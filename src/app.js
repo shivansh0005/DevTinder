@@ -1,15 +1,24 @@
  const express=require('express');
  const app=express();
+ const {adminAuth,userAuth}=require('./utils/auth')
 
+//GET /users=>middleware chain  =>request handler(only middle ware which send resposne)
+//General middleware for all request
 
-app.use("/user",(req,res,next)=>{
+app.use("/admin",adminAuth);
+app.use("/user",userAuth)
+app.get("/admin/getAllData",(req,res)=>{
+ res.send("all data sent")
+})
 
-res.send("print karde")
-next();
-},(req,res)=>{
+app.get("/admin/deleteUser",(req,res)=>{
+   res.send("Deleted a User")
+  })
 
-  res.send("print karde 2")
-   })
+  app.get("/user",(req,res)=>{
+   res.send("User Login");
+  })
+
 
  app.listen(3000,()=>{
     console.log("Server is created and listening on 3000")
