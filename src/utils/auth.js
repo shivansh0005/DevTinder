@@ -24,3 +24,5 @@ module.exports = {
     adminAuth,
     userAuth,
 };
+const url = "mongodb+srv://namasteshivansh:HEU2oE9koUbKSUxM@namastenode.cxr8b.mongodb.net/";
+// mongodb+srv://shivanshchaturvedi5:<db_password>@cluster0.vcalv.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
