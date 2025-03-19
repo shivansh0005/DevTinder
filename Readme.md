@@ -10,4 +10,23 @@
 
  ->I will be following microservice architecture to build dev tinder.
 
+
+ # Episode 3  Creating our Express Server
+
+ ->Started with backend for the Devtinder Project
+ ->created a server using express Js.
+ ->Designed databse schema.
+ ->Wrote request handlers 
+ 
+  # Episode-04 | Routing and Request Handlers
+
+  ->Order of routes is Very important
+  ->Explored Http methods 
+  ->Installed postman made a workspace /collection and made test api call.
+  ->app.use will method all api methods wether its get post or another.
+
+  ->Explored Dynamic routing 
+
+  
+
  
