@@ -27,6 +27,19 @@
 
   ->Explored Dynamic routing 
 
+
+  #  Episode-05 | Middlewares & Error Handlers (    What is middle ware and how express js req behind the scene)
+
+  ->Multiple Route handler for one route 
+  ->Use of next() function and how once one res is sent other cant be sent.
+
+  ->When ever we make an api call it goes to a middleware chain  and finally i goes to res handler which finally send a response which actually sent a data back.
+
+  ->Learnt why and when we use app.use in case of middleware .
+
+  ->Learnt error handling using wildcard express error handeling
+
+
   
 
  
