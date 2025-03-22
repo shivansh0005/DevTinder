@@ -28,7 +28,7 @@
   ->Explored Dynamic routing 
 
 
-  #  Episode-05 | Middlewares & Error Handlers (    What is middle ware and how express js req behind the scene)
+  #  Episode-05 | Middlewares & Error Handlers 
 
   ->Multiple Route handler for one route 
   ->Use of next() function and how once one res is sent other cant be sent.
@@ -39,7 +39,22 @@
 
   ->Learnt error handling using wildcard express error handeling
 
+  # Episode-06 | Database, Schema & Models | Mongoose
 
+  ->Using npm library moongose
+  ->Created userSchema.
+  ->Created /signup api to add data to database
   
 
+  
+steps for episode 5(connecting to database)
+
+->Create a free cluster on MongoDb official website
+
+-Install mongoose Lib
+-Connect Your applicatio  to the database "Conection-url:/DevTinder
+-Call the connectDB function and connect to db before starting your application 
+->Created UserSchema using mongoose
+->Create signup api and pushed some data to database
+->Error handling
  
