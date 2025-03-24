@@ -58,3 +58,19 @@ steps for episode 5(connecting to database)
 ->Create signup api and pushed some data to database
 ->Error handling
  
+ # Episode-07 | Diving into the APIs
+
+ ->Diffrence between js and json obj.
+ Added the express.json middle ware
+ ->Made signup api dynamic to recieve  Api from end user.
+ ->User.findone with duplicate email id fetched which user first 
+
+ ->API-GET user by email
+ ->API-FEED API -GET/FED-get all the users from the database
+ ->Create  an APi using find by id its is a hw
+ ->Create an api inorder to delete the user findbyidanddel
+ ->Diff between patch and put
+ ->API->UPDATE THE USER
+ ->Explore mongoose Documentation for Model operations
+ ->What are the options in Model.findOneAndUpdate,explore more
+ ->API-UPDATE with email id
