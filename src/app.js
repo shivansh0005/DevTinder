@@ -16,7 +16,7 @@ try{
     res.send("User Created");
 }
 catch(err){
-    res.status(400).send("Error Saving User");
+    res.status(400).send(err.message);
 }
 
 });
@@ -85,17 +85,28 @@ res.status(400).send("Error in deleting user");
 })
 
 //Update data of user api
-app.patch("/user",async(req,res)=>{
-    const id=req.body.userId;
-const data=req.body;
+app.patch("/user/:userId",async(req,res)=>{
+    const id=req.params?.userId;
+    const data=req.body;
+  
 try{
-    const user=await User.findByIdAndUpdate(id,data);
+    const ALLOWED_UPDATES=["photoUrl","Skills","age"]
+    const isUpdatedAllowed=Object.keys(data).every((k)=>
+       ALLOWED_UPDATES.includes(k)
+    ); 
+    if(!isUpdatedAllowed){
+       throw new Error("Invalid Updates");
+    }
+
+   
+    const user=await User.findByIdAndUpdate(id,data, { new: true, runValidators: true } );
+    
 
     console.log(user);
     res.send("User Updated");
         }
         catch(err){
-    res.status(400).send("Error Updating user");
+    res.status(400).send(err.message);
         }
 
 })

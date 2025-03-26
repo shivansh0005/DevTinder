@@ -74,3 +74,13 @@ steps for episode 5(connecting to database)
  ->Explore mongoose Documentation for Model operations
  ->What are the options in Model.findOneAndUpdate,explore more
  ->API-UPDATE with email id
+
+
+ # Episode 8 -> Data Sanitization & Schema Validations
+
+ ->Learnt about unique,required  &Default feilds.
+ ->Learnt about runValidators:true in patch api
+ ->Timestamps in user schema for timestamps in database
+ -> DATA SANITIZATION->API level validation on PATCH AND SIGNUP post API
+ ->Used npm validator package for validation email at schema level.
+ ->Created a custom validators.
