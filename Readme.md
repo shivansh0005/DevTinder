@@ -84,3 +84,11 @@ steps for episode 5(connecting to database)
  -> DATA SANITIZATION->API level validation on PATCH AND SIGNUP post API
  ->Used npm validator package for validation email at schema level.
  ->Created a custom validators.
+
+ # Encrypting Passwords
+
+ ->Created a validation function for signup api
+ ->Install bcrypt package
+ ->Create passwordHash using bcrypt.hash &save the user using encrypted pass
+
+ ->Created a Login api and validated the User
