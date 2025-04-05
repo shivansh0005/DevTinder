@@ -33,7 +33,7 @@
   ->Multiple Route handler for one route 
   ->Use of next() function and how once one res is sent other cant be sent.
 
-  ->When ever we make an api call it goes to a middleware chain  and finally i goes to res handler which finally send a response which actually sent a data back.
+  ->When ever we make an api call it goes to a middleware chain  and finally it goes to res handler which finally send a response which actually sent a data back.
 
   ->Learnt why and when we use app.use in case of middleware .
 
@@ -91,4 +91,24 @@ steps for episode 5(connecting to database)
  ->Install bcrypt package
  ->Create passwordHash using bcrypt.hash &save the user using encrypted pass
 
- ->Created a Login api and validated the User
+ ->Created a Login api and validated the User.
+
+  # Episode-10 | Authentication, JWT & Cookies
+
+  ->When ever we login into any website server sends JWT Toekn inside cookies back as a response ...when ever any furthur request is made cookies and token are validated before  that req is executed.
+
+-->npm i  cookie-parser 
+-->Just send Dummy cooie to User
+
+--->create GTE/Profile API and check if you get the cookie back
+
+->install jsonwebtoken
+  ->IN login api after email and passowrd validation create a jwt token and send it back to user 
+
+  ->read the cookies inside your profile Api and find the logged in user 
+
+  ->Add the userAuth middleware in profile api and a new connectionapi req
+  ->Set the expiry of jwt token and cookies to 7 days 
+
+  ->create userSchema methods to getJWT()
+  ->Create UserSchema method to comparepassword(password)

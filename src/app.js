@@ -4,17 +4,21 @@ const connectDB=require('./config/database');
 const User=require('./models/user');
 const {validsignupdata}=require('./utils/validation');
 const bcrypt=require('bcrypt');
+const cookieparser=require("cookie-parser")
+const jwt=require("jsonwebtoken");
+const userAuth=require('./Middleware/auth');
+
 
 
 const app=express();
+//Inorder to read cookies npm i cookie-parser then use it
+app.use(cookieparser());
 // AS no route is given to the below mentioned Middleware it will work for all
 app.use(express.json());
+
+//signup
 app.post("/signup",async (req,res)=>{
-   
-  
-    
-    
-  
+ 
 try{
      //Validation os data should be done as soon as user is registered
     validsignupdata(req);
@@ -51,11 +55,20 @@ try{
     if(!user){
         return res.status(404).send("Invalid creds!!!!");
     }
-    const isPasswordValid=await bcrypt.compare(password,user.password);
+    const isPasswordValid=await user.verifyPassword(password);
     if(!isPasswordValid){
         return res.status(400).send("Invalid Credentials");
     }
     else{
+
+
+        //Create a JWT Token
+        // const token =await jwt.sign({_id:user._id},"DEV@Tinder$790",{expiresIn:"1d"});  ;
+const token =await user.getJWT();
+
+
+        //Add the toekn to cookie and send the response back to the User
+        res.cookie("token",token)
         res.send("Login Successfull");
     }
 
@@ -68,95 +81,32 @@ catch{
 
 })
 
-//Find one user by email
-
-app.get("/users",async (req,res)=>{
-    try{
-        const a=await User.findOne({email:req.body.email});
-        if(a){
-            res.send(a);
-        }
-        else{
-            res.send("User Not Found");
-        }
-    }
-    catch(err){
-        res.status(400).send("Error in fetching user");
-    }   
-})
-//GET user by email
-
-app.get("/user",async (req,res)=>{
-    const useremail=req.body.email;
-
-    try{
-      const user=  await User.find({email:useremail});
-      console.log(user)
-      if(user.length===0){
-          return res.status(404).send("User Not Found");
-      }
-      res.send(user);
-
-    }
-    catch(err){
-        res.status(400).send("Error in fetching user");
-    }
-
-})
-
-//Feed API-GET /feed-get all the users from the database 
-app.get("/feed",async(req,res)=>{
-    try{
-       
-  const users=await User.find({});
-  res.send(users);
-      }
-      catch(err){
-          res.status(400).send("Error in fetching user");
-      }
-})
-
-// Delete user 
-app.delete("/del",async(req,res)=>{
-    const b=req.body.userId;
-
- try{
-const user=await User.findByIdAndDelete(b);
-console.log(user);
-res.send("User Deleted");
-    }
-    catch(err){
-res.status(400).send("Error in deleting user");
-    }
-
-})
-
-//Update data of user api
-app.patch("/user/:userId",async(req,res)=>{
-    const id=req.params?.userId;
-    const data=req.body;
-  
-try{
-    const ALLOWED_UPDATES=["photoUrl","Skills","age"]
-    const isUpdatedAllowed=Object.keys(data).every((k)=>
-       ALLOWED_UPDATES.includes(k)
-    ); 
-    if(!isUpdatedAllowed){
-       throw new Error("Invalid Updates");
-    }
-
-   
-    const user=await User.findByIdAndUpdate(id,data, { new: true, runValidators: true } );
+//Profile api
+app.get("/profile",userAuth,async (req,res)=>{
+  try {
     
 
-    console.log(user);
-    res.send("User Updated");
-        }
-        catch(err){
-    res.status(400).send(err.message);
-        }
+    const user=req.user;
+
+
+
+    res.send(user);
+
+   }catch(err){
+    res.status(400).send("Error in fetching profile data");
+   }
 
 })
+
+app.post("/sendconnectionreq",userAuth,async(req,res)=>{
+console.log("Sending connection request");
+const user=req.user;
+console.log(req.user);
+res.send(user.firstName+" sent you a connection request");
+})
+
+ 
+
 
 connectDB().then(()=>{
     console.log("Connected To the database");

@@ -33,7 +33,11 @@
   
 const mongoose=require('mongoose')
 const {Schema}=mongoose;
+const bcrypt=require('bcrypt');
 var validator = require('validator');
+
+const jwt=require("jsonwebtoken");
+
 const userSchema=new Schema({
    
 
@@ -107,4 +111,19 @@ throw new Error("Gender not valid")
         default:"This is general info about User"
     }
 },{timestamps:true});
+userSchema.methods.getJWT=async function(){
+    const user=this; //this will point to the current user instance
+    const token =await jwt.sign({_id:user._id},"DEV@Tinder$790",{expiresIn:"1d"}); 
+
+return token}
+
+
+
+userSchema.methods.verifyPassword=async function(passwordinputbyuser){
+    const user=this; //this will point to the current user instance
+    const passwordHash=this.password;
+   const isPasswordValid=await bcrypt.compare(passwordinputbyuser,passwordHash);
+  return isPasswordValid; //true or false
+}
+
 module.exports=mongoose.model("User",userSchema); 
