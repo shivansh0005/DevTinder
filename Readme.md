@@ -112,3 +112,20 @@ steps for episode 5(connecting to database)
 
   ->create userSchema methods to getJWT()
   ->Create UserSchema method to comparepassword(password)
+
+#  Episode-11 | Diving into the APIs and express Router
+
+->Explored Api List.
+->Create A list of all api required for dev tinder
+->Group Multiple Routed under respective route.
+explore and read  documentation for express router
+-create Route Folder for managing  auth ,profile,request routers
+->Create Auth Route,Profile Router and Request router
+->Import these router in app.js
+->Create POST /lOGOUT Api
+->Create PATCH /Profile /edit
+->Create Patch/Profile/password
+->Test all api
+->Make Sure You validate all data in post patch req
+
+

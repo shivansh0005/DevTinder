@@ -12,6 +12,18 @@
     throw new Error("Password is weak");
    }
  };
- module.exports={
-    validsignupdata
+ const validateProfileEditData = (req) => {
+  const allowedEditFields = [
+    "About", "Skills", "photoUrl", "gender",
+    "age", "lastName", "firstName", "email"
+  ];
+
+  const isallowed=Object.keys(req.body).every(field=>allowedEditFields.includes(field));
+
+return isallowed;
  }
+
+module.exports={
+    validsignupdata,
+    validateProfileEditData
+};
