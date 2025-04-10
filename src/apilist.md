@@ -13,8 +13,8 @@
 
 
 # Connectionreqrouter
-->Post /request/send/intrested/:userId
-->Post /request/send/ignored/:uSERiD
+->Post /request/send/status/:userId
+
 ->POST /request/review/accepted/:requestId
 >POST /request/review/REJECTED/RequestId
 

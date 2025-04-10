@@ -129,3 +129,16 @@ explore and read  documentation for express router
 ->Make Sure You validate all data in post patch req
 
 
+# Episode 12 Logical DB Query & Compound Indexes
+
+->Create a connection req schema
+->Send connection req api
+->Proper validation of data
+->Think about all corner cases
+->$ or query and $ and query
+->Schema.pre("save") function
+->Read more about indexes in Mongo Db
+->Why do we need Indexes in DB
+->What is the advantage and disadvantages of creating index?
+->What are the disadvantage of creating a lot of indexes
+->Read article about compound index 
