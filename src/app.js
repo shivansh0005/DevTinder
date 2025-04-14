@@ -12,6 +12,7 @@ const {validateProfileEditData}=require('./utils/validation');
 const authRouter=require('./Routes/auth');
 const profileRouter=require('./Routes/profile');
 const Requestrouter=require('./Routes/request');
+const UserRouter=require('./Routes/user');
 
 
 
@@ -26,6 +27,7 @@ app.use(express.json());
 app.use("/",authRouter);
 app.use("/",profileRouter);
 app.use("/",Requestrouter);
+app.use("/",UserRouter);
 
 
 

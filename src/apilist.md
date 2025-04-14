@@ -14,13 +14,13 @@
 
 # Connectionreqrouter
 ->Post /request/send/status/:userId
+->POST /request/review/:status/:requestId
 
-->POST /request/review/accepted/:requestId
->POST /request/review/REJECTED/RequestId
+
 
 # UserRouter
-->GET /User/Connection 
-->GET  /User/request
+->GET  /user/request
+->GET /User/Connection (Get accepted connections)
 ->GET /feed->Gets you the profile of other user on the platform
 
 Status :ignore,intrested,accept,reject

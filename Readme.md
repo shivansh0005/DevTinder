@@ -142,3 +142,13 @@ explore and read  documentation for express router
 ->What is the advantage and disadvantages of creating index?
 ->What are the disadvantage of creating a lot of indexes
 ->Read article about compound index 
+
+#  ref, Populate & Thought process of writing APIs
+
+->Write code with proper validations for POST /request/review/:status/:requestId
+
+->Thought process->POST VS GET
+
+->Read about ref and populate
+->Create GET /user /request/revieved with all the checks
+->Create GET API  user/connections (or query)

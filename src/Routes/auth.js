@@ -56,7 +56,7 @@ authRouter.post("/signup",async(req,res)=>{
         
                 //Add the toekn to cookie and send the response back to the User
                 res.cookie("token",token)
-                res.send("Login Successfull");
+                res.send(user.firstName+" is Logged in Successfull");
             }
         
         

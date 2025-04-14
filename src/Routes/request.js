@@ -12,10 +12,7 @@ Requestrouter.post("/request/send/:status/:toUserId",userAuth,async(req,res)=>{
     const toUserId=req.params.toUserId;
     const status=req.params.status;
 
-   
-
-   
-
+  
     const allowedStatuses=["ignored","intrested"];
     if(!allowedStatuses.includes(status)){
       return res.status(400).json({ message: "Invalid status Type : " +status });
@@ -62,5 +59,50 @@ Requestrouter.post("/request/send/:status/:toUserId",userAuth,async(req,res)=>{
   }
     
     })
+
+    Requestrouter.post("/request/review/:status/:requestId",userAuth,async(req,res)=>{
+try{
+  const requestId=req.params.requestId;
+  const status=req.params.status;
+  const loggedInUser=req.user;
+
+
+  const allowedStatuses=["accepted","rejected"];
+  if(!allowedStatuses.includes(status)){
+    return res.status(400).json({ message: "Invalid status Type : " +status });
+  }
+
+  const connectionRequest=await ConnectionRequest.findOne({
+    _id:requestId,
+    toUserId:loggedInUser._id,
+    status:"intrested"
+  });
+  if(!connectionRequest){
+    return res.status(404).json({ message: "Connection request not found or already reviewed" });
+  }
+  connectionRequest.status=status;
+  const data=await connectionRequest.save();
+  res.json({
+    message: `Connection request marked as '${status}' and sent successfully.`,
+    data
+  });
+
+
+//validate the status
+  //peter->shivansh
+  //Is shivansh loggedin user(to userid=loggedin user)
+  //Status =intrested
+  //request id should be valid
+ 
+}
+catch(err){
+  res.status(400).send("Error :"+err.message)
+}
+
+
+
+    })
+
+   
 
     module.exports=Requestrouter;
