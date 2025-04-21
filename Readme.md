@@ -152,3 +152,13 @@ explore and read  documentation for express router
 ->Read about ref and populate
 ->Create GET /user /request/revieved with all the checks
 ->Create GET API  user/connections (or query)
+
+# Episode-14 |Building Feed API & Pagination
+
+->Logic for GET/Feed API
+->Explore the $nin,$and,$ne and other query operator
+-> /feed?page=1&limit=10=>1-10
+/feed?page=2&limit=10=>11-20
+/feed?page=3&limit=10=>21-30
+
+.skip() & .limit()

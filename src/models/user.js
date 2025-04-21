@@ -69,7 +69,7 @@ throw new Error("Gender not valid")
             }
         }
     },
-    Skills: {
+    skills: {
         type: [String],
         validate: {
             validator: function (val) {

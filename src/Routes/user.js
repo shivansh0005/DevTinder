@@ -2,7 +2,7 @@ const express=require("express");
 const UserRouter=express.Router();
 const userAuth=require("../Middleware/auth");
 const connectionRequest=require("../models/connectionRequest");
-
+const User=require("../models/user");
 //Get all pending connection req for logged in User
 UserRouter.get("/user/request/recieved",userAuth,async(req,res)=>{        
 try{
@@ -65,6 +65,48 @@ catch(err){
 }
 
 
+})
+UserRouter.get("/feed",userAuth,async(req,res)=>{
+
+    try{
+        const LoggedInUser=req.user;
+        const page=parseInt(req.query.page) ||1;
+        let limit=parseInt(req.query.limit) ||10;
+        if(limit>50){
+            limit=50;
+        }
+         const skip=(page-1)*limit;
+
+        //Find all connection requests(sent +recieved)
+        const connectionRequests=await  connectionRequest.find({
+            $or:[
+                {fromUserId:LoggedInUser._id},
+                {toUserId:LoggedInUser._id}
+            ]
+        }).select("fromUserId toUserId");
+
+        const hideUserFromFeed=new Set();
+
+        connectionRequests.forEach((req)=>{
+            hideUserFromFeed.add(req.fromUserId.toString());
+            hideUserFromFeed.add(req.toUserId.toString());
+        })
+
+        console.log(hideUserFromFeed);
+        const user=await User.find({
+          $and:[{_id:{$nin:Array.from(hideUserFromFeed)}},
+            {_id:{$ne:LoggedInUser._id}}
+          ],
+
+        }).select("firstName lastName photoUrl Skills").skip(skip).limit(limit);
+
+        res.send(user);
+
+
+    }
+    catch(err){
+        res.status(400).json({message:"Error : ",error:err.message});
+    }
 })
 
 module.exports=UserRouter;
