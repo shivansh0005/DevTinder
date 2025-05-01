@@ -1,5 +1,5 @@
 
- # Episode-01 | Microservices vs Monolith - How to Build a Project
+ | Microservices vs Monolith - How to Build a Project
 
 
  ->Started building a project Dev tinder->Site which allows developers to connect with each other.
@@ -10,15 +10,14 @@
 
  ->I will be following microservice architecture to build dev tinder.
 
-
- # Episode 3  Creating our Express Server
+ Creating our Express Server
 
  ->Started with backend for the Devtinder Project
  ->created a server using express Js.
  ->Designed databse schema.
  ->Wrote request handlers 
  
-  # Episode-04 | Routing and Request Handlers
+ | Routing and Request Handlers
 
   ->Order of routes is Very important
   ->Explored Http methods 
@@ -28,7 +27,7 @@
   ->Explored Dynamic routing 
 
 
-  #  Episode-05 | Middlewares & Error Handlers 
+ | Middlewares & Error Handlers 
 
   ->Multiple Route handler for one route 
   ->Use of next() function and how once one res is sent other cant be sent.
@@ -39,7 +38,7 @@
 
   ->Learnt error handling using wildcard express error handeling
 
-  # Episode-06 | Database, Schema & Models | Mongoose
+   | Database, Schema & Models | Mongoose
 
   ->Using npm library moongose
   ->Created userSchema.
@@ -47,7 +46,7 @@
   
 
   
-steps for episode 5(connecting to database)
+steps for(connecting to database)
 
 ->Create a free cluster on MongoDb official website
 
@@ -58,7 +57,7 @@ steps for episode 5(connecting to database)
 ->Create signup api and pushed some data to database
 ->Error handling
  
- # Episode-07 | Diving into the APIs
+ | Diving into the APIs
 
  ->Diffrence between js and json obj.
  Added the express.json middle ware
@@ -76,7 +75,7 @@ steps for episode 5(connecting to database)
  ->API-UPDATE with email id
 
 
- # Episode 8 -> Data Sanitization & Schema Validations
+  Data Sanitization & Schema Validations
 
  ->Learnt about unique,required  &Default feilds.
  ->Learnt about runValidators:true in patch api
@@ -112,8 +111,7 @@ steps for episode 5(connecting to database)
 
   ->create userSchema methods to getJWT()
   ->Create UserSchema method to comparepassword(password)
-
-#  Episode-11 | Diving into the APIs and express Router
+ | Diving into the APIs and express Router
 
 ->Explored Api List.
 ->Create A list of all api required for dev tinder
@@ -129,7 +127,7 @@ explore and read  documentation for express router
 ->Make Sure You validate all data in post patch req
 
 
-# Episode 12 Logical DB Query & Compound Indexes
+ Logical DB Query & Compound Indexes
 
 ->Create a connection req schema
 ->Send connection req api
@@ -153,7 +151,7 @@ explore and read  documentation for express router
 ->Create GET /user /request/revieved with all the checks
 ->Create GET API  user/connections (or query)
 
-# Episode-14 |Building Feed API & Pagination
+ |Building Feed API & Pagination
 
 ->Logic for GET/Feed API
 ->Explore the $nin,$and,$ne and other query operator
