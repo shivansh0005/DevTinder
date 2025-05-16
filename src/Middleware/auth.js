@@ -9,7 +9,7 @@
   const cookies = req.cookies;
   const { token } = cookies;
   if (!token) {
-    return res.status(401).send("Token not found");
+    return res.status(401).send("Please Login!");
   }
   const decodedObj=await jwt.verify(token,"DEV@Tinder$790" );
   const {_id}=decodedObj;

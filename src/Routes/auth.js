@@ -12,7 +12,7 @@ authRouter.post("/signup",async(req,res)=>{
          //Validation os data should be done as soon as user is registered
         validsignupdata(req);
     
-        const {firstName,lastName,email,password}=req.body;
+        const {firstName,lastName,email,password,age,gender,skills,photoUrl,About}=req.body;
     
       //Encrypt you password should be done on priority
     
@@ -22,12 +22,14 @@ authRouter.post("/signup",async(req,res)=>{
     
       // //Creating a new instance of a User
         const user=new User({
-            firstName,lastName,email,password:passwordHash,
+            firstName,skills,photoUrl,About,age,gender,lastName,email,password:passwordHash,
         });
     
     
-        await user.save();
-        res.send("User Created");
+      const savedUser=  await user.save();
+         const token =await savedUser.getJWT();   
+                res.cookie("token",token)
+        res.json({message:"User Created Successfully",data:savedUser}); 
     }
     catch(err){
         res.status(400).send(err.message);
@@ -56,7 +58,12 @@ authRouter.post("/signup",async(req,res)=>{
         
                 //Add the toekn to cookie and send the response back to the User
                 res.cookie("token",token)
-                res.send(user.firstName+" is Logged in Successfull");
+                // res.send(user.firstName+" is Logged in Successfull");
+                res.json({
+                    message:user.firstName+" is Logged in Successfull",
+                    data:user,
+                    token:token
+                })
             }
         
         
@@ -68,7 +75,7 @@ authRouter.post("/signup",async(req,res)=>{
         
         })
 
-        authRouter.post("/Logout",async(req,res)=>{
+authRouter.post("/Logout",async(req,res)=>{
             // const token=req.cookies.token;
             // if(!token){
             //     return res.status(400).send("No user is logged in");
@@ -86,10 +93,5 @@ authRouter.post("/signup",async(req,res)=>{
             })
             res.send("Logout Successfull")
         })
-
-
-
-
-
 
 module.exports=authRouter

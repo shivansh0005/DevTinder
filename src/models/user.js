@@ -41,11 +41,14 @@ const userSchema=new Schema({
     },
     age:{
         type:Number,
-        Min:18,
-        Max:100
+        min:18,
+        max:100,
+        
+
     },
     gender:{
         type:String,
+       
         enum :{
 values:["male","female","others"],
         message:`{VALUE} is not a valid gender`
@@ -62,6 +65,7 @@ throw new Error("Gender not valid")
 },
     photoUrl:{
         type:String,
+        required:true,
         default:"https://imgs.search.brave.com/rwE-hC6ESt3hBJZhImPkb-KvU26bLDKVe-OKv1y50-M/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzLzE0LzQz/LzU1LzE0NDM1NWQ3/YjM2YzVmNjQ2NDM1/NDIzNzk4MjgxY2U5/LmpwZw",
         validate(value){
             if(!validator.isURL(value)){
@@ -80,7 +84,8 @@ throw new Error("Gender not valid")
     },
     About:{
         type:String,
-        default:"This is general info about User"
+        default:"Hey there! Connect with me to know more about me",
+        
     }
 },{timestamps:true});
 userSchema.methods.getJWT=async function(){

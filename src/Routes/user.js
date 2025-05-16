@@ -13,7 +13,7 @@ toUserId:loggedInUser._id,
 status:"intrested"
 
 
-    }).populate("fromUserId",["firstName","lastName","photoUrl"]);
+    }).populate("fromUserId",["firstName","lastName","photoUrl","About","age","gender"]);
     if(connectionRequests.length===0){
         return res.status(404).json({message:"No Connection Requests",data:[]});
     }
@@ -39,7 +39,7 @@ try{
             {fromUserId:loggedInUser._id,status:"accepted"},
             {toUserId:loggedInUser._id,status:"accepted"}
         ]
-    }).populate("fromUserId",["firstName","lastName","photoUrl"]).populate("toUserId",["firstName","lastName","photoUrl"]);
+    }).populate("fromUserId",["firstName","lastName","photoUrl","About","age","gender"]).populate("toUserId",["firstName","lastName","photoUrl","age","gender","About"]);
 
     if(connectionRequests.length===0){
         return res.status(404).json({message:"No Connections",data:[]});
@@ -98,7 +98,7 @@ UserRouter.get("/feed",userAuth,async(req,res)=>{
             {_id:{$ne:LoggedInUser._id}}
           ],
 
-        }).select("firstName lastName photoUrl Skills").skip(skip).limit(limit);
+        }).select("firstName lastName photoUrl  About age gender ").skip(skip).limit(limit);
 
         res.send(user);
 
