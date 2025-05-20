@@ -1,3 +1,13 @@
+// app.use(cors({
+//     origin: [
+//         "http://localhost:5173",
+//         "https://your-frontend-domain.com" // <-- add your deployed frontend URL here
+//     ],
+//     credentials: true,
+//     methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+//     allowedHeaders: ["Origin", "X-Requested-With", "Content-Type", "Accept", "Authorization"]
+// }));
+
 
 
 const express = require('express');
@@ -18,13 +28,18 @@ const cors = require('cors');
 
 const app = express();
 
-
-app.use(cors({
-    origin: "http://localhost:5173",
+const corsOptions = {
+    origin: [
+        "http://localhost:5173",
+        // "https://superlative-bublanina-a16d88.netlify.app"
+    ],
     credentials: true,
-    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"], // Ensure PATCH is included
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
     allowedHeaders: ["Origin", "X-Requested-With", "Content-Type", "Accept", "Authorization"]
-}));
+};
+
+app.use(cors(corsOptions));
+app.options('*', cors(corsOptions)); // <-- Add this line
 
 
 
@@ -46,63 +61,3 @@ connectDB().then(() => {
     console.log("Error in connection to the database");
 });
 
-
-// const express = require('express');
-// const connectDB = require('./config/database');
-// const cookieParser = require("cookie-parser");
-// const cors = require('cors');
-
-// // Routes
-// const authRouter = require('./Routes/auth');
-// const profileRouter = require('./Routes/profile');
-// const requestRouter = require('./Routes/request');
-// const userRouter = require('./Routes/user');
-
-// // Create express app
-// const app = express();
-
-// // ✅ Allowed origins
-// const allowedOrigins = [
-//     "http://localhost:5173", // local development frontend
-//     "https://your-frontend-domain.com" // deployed frontend (replace with actual domain)
-// ];
-
-// // ✅ CORS configuration
-// app.use(cors({
-//     origin: function (origin, callback) {
-//         // allow requests with no origin like mobile apps or curl
-//         if (!origin || allowedOrigins.includes(origin)) {
-//             callback(null, true);
-//         } else {
-//             callback(new Error("Not allowed by CORS"));
-//         }
-//     },
-//     credentials: true,
-//     methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
-//     allowedHeaders: ["Origin", "X-Requested-With", "Content-Type", "Accept", "Authorization"]
-// }));
-
-// // ✅ Preflight (OPTIONS) request handling
-// app.options("*", cors());
-
-// // Middlewares
-// app.use(cookieParser());
-// app.use(express.json());
-
-// // Routes
-// app.use("/", authRouter);
-// app.use("/", profileRouter);
-// app.use("/", requestRouter);
-// app.use("/", userRouter);
-
-// // Connect to DB and start server
-// connectDB()
-//     .then(() => {
-//         console.log("✅ Connected to the database");
-//         app.listen(3000, () => {
-//             console.log("🚀 Server listening on port 3000");
-//         });
-//     })
-//     .catch(err => {
-//         console.error("❌ Database connection failed:", err);
-//     });

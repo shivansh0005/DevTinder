@@ -15,7 +15,7 @@
  const validateProfileEditData = (req) => {
   console.log("Validating Profile Edit Data", req.body);
   const allowedEditFields = [
-    "about", "Skills", "photoUrl", "gender",
+    "About", "Skills", "photoUrl", "gender",
     "age", "lastName", "firstName", "email"
   ];
 
