@@ -56,8 +56,8 @@ authRouter.post("/login", async (req, res) => {
       return res.status(404).send("Invalid creds!!!!");
     }
 
-    return res.status(200).send("Testing Dummy Response"+ user);
     const isPasswordValid = await user.verifyPassword(password);
+    return res.status(200).send("Testing Dummy Response"+ isPasswordValid);
     if (!isPasswordValid) {
       return res.status(400).send("Invalid Credentials");
     } else {
