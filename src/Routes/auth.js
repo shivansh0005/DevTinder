@@ -50,6 +50,7 @@ authRouter.post("/signup", async (req, res) => {
 });
 authRouter.post("/login", async (req, res) => {
   try {
+    return res.status(404).send("Testing Dummy Response");
     const { email, password } = req.body;
     const user = await User.findOne({ email: email });
     if (!user) {
