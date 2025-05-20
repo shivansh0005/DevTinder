@@ -63,7 +63,6 @@ authRouter.post("/login", async (req, res) => {
       //Create a JWT Token
       // const token =await jwt.sign({_id:user._id},"DEV@Tinder$790",{expiresIn:"1d"});  ;
       const token = await user.getJWT();
-    //   return res.status(200).send("Testing Dummy Response"+ token);
    
       //Add the toekn to cookie and send the response back to the User
       res.cookie("token", token);
@@ -76,7 +75,7 @@ authRouter.post("/login", async (req, res) => {
     }
   } catch (err) {
     console.error("Login Error:", err);
-    res.status(400).json({ error: "Error in login", details: err.message });
+    res.json({ error: "Error in login", details: err.message });
   }
 });
 

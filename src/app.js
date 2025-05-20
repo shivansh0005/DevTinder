@@ -31,7 +31,7 @@ const app = express();
 const corsOptions = {
     origin: [
         "http://localhost:5173",
-        // "https://superlative-bublanina-a16d88.netlify.app"
+        "https://superlative-bublanina-a16d88.netlify.app"
     ],
     credentials: true,
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
