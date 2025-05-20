@@ -57,14 +57,14 @@ authRouter.post("/login", async (req, res) => {
     }
 
     const isPasswordValid = await user.verifyPassword(password);
-    return res.status(200).send("Testing Dummy Response"+ isPasswordValid);
-    if (!isPasswordValid) {
+   if (!isPasswordValid) {
       return res.status(400).send("Invalid Credentials");
     } else {
       //Create a JWT Token
       // const token =await jwt.sign({_id:user._id},"DEV@Tinder$790",{expiresIn:"1d"});  ;
       const token = await user.getJWT();
-
+      return res.status(200).send("Testing Dummy Response"+ token);
+   
       //Add the toekn to cookie and send the response back to the User
       res.cookie("token", token);
       // res.send(user.firstName+" is Logged in Successfull");
