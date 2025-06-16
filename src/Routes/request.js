@@ -3,6 +3,7 @@ const Requestrouter = express.Router();
  const userAuth = require('../Middleware/auth');
  const ConnectionRequest = require('../models/connectionRequest');
 const User = require('../models/user');
+const sendEmail = require('../utils/sendEmail');
 
 const { Connection } = require('mongoose');
 
@@ -45,6 +46,11 @@ Requestrouter.post("/request/send/:status/:toUserId",userAuth,async(req,res)=>{
       status
     });
     const data=await connectionRequest.save();
+
+   const emailRes=await sendEmail.run(
+   "A new connection request has been sent to you from " + fromuser.firstName,
+    );
+    console.log(emailRes);
     res.json({
       message: `Connection request marked as '${status}' and sent successfully.`,
       data
@@ -59,6 +65,8 @@ Requestrouter.post("/request/send/:status/:toUserId",userAuth,async(req,res)=>{
   }
     
     })
+
+
 
     Requestrouter.post("/request/review/:status/:requestId",userAuth,async(req,res)=>{
 try{

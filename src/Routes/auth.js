@@ -7,7 +7,7 @@ const jwt = require("jsonwebtoken");
 
 authRouter.post("/signup", async (req, res) => {
   try {
-    //Validation os data should be done as soon as user is registered
+  
     validsignupdata(req);
 
     const {
@@ -22,12 +22,10 @@ authRouter.post("/signup", async (req, res) => {
       About,
     } = req.body;
 
-    //Encrypt you password should be done on priority
-
     const passwordHash = await bcrypt.hash(password, 10);
     console.log(passwordHash);
 
-    // //Creating a new instance of a User
+ 
     const user = new User({
       firstName,
       skills,
@@ -60,13 +58,12 @@ authRouter.post("/login", async (req, res) => {
    if (!isPasswordValid) {
       return res.status(400).send("Invalid Credentials");
     } else {
-      //Create a JWT Token
-      // const token =await jwt.sign({_id:user._id},"DEV@Tinder$790",{expiresIn:"1d"});  ;
+  
       const token = await user.getJWT();
    
-      //Add the toekn to cookie and send the response back to the User
+      
       res.cookie("token", token);
-      // res.send(user.firstName+" is Logged in Successfull");
+     
       res.status(200).json({
         message: user.firstName + " is Logged in Successfull",
         data: user,
@@ -80,17 +77,7 @@ authRouter.post("/login", async (req, res) => {
 });
 
 authRouter.post("/Logout", async (req, res) => {
-  // const token=req.cookies.token;
-  // if(!token){
-  //     return res.status(400).send("No user is logged in");
-  // }
-  // try{
-  //     res.clearCookie(token);
-  //     res.send("Logout Successfull")
-  // }
-  // catch(err){
-  //     res.status(400).send("Error in Logout")
-  // }
+
 
   res.cookie("token", null, {
     expires: new Date(Date.now()),

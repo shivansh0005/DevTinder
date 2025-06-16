@@ -3,7 +3,7 @@ const UserRouter=express.Router();
 const userAuth=require("../Middleware/auth");
 const connectionRequest=require("../models/connectionRequest");
 const User=require("../models/user");
-//Get all pending connection req for logged in User
+
 UserRouter.get("/user/request/recieved",userAuth,async(req,res)=>{        
 try{
 

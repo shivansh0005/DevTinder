@@ -25,7 +25,7 @@ const profileRouter = require('./Routes/profile');
 const Requestrouter = require('./Routes/request');
 const UserRouter = require('./Routes/user');
 const cors = require('cors');
-
+require('dotenv').config();
 const app = express();
 
 const corsOptions = {

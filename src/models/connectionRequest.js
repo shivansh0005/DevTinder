@@ -31,7 +31,7 @@ connectionRequestSchema.pre("save",async function(next){
    const connectionRequest=this;
    //Check if fromUserId and toUserId are the same
     if (connectionRequest.fromUserId.toString() === connectionRequest.toUserId.toString()) {
-         throw new Error("You cannot sendddddddddd a connection request to yourself");
+         throw new Error("You cannot send a connection request to yourself");
       }
       next();
 })

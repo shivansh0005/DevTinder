@@ -1,2 +1,3 @@
 node_modules
+.env
 mongodb+srv://namasteshivansh:Hellomoto@namstenode1.cxr8b.mongodb.net/DevTinder
