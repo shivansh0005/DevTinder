@@ -26,7 +26,9 @@ const Requestrouter = require('./Routes/request');
 const UserRouter = require('./Routes/user');
 const cors = require('cors');
 require('dotenv').config();
+require('./utils/cronJob'); 
 const app = express();
+
 
 const corsOptions = {
     origin: [
